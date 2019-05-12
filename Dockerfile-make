@@ -1,0 +1,20 @@
+FROM opencv4-source
+
+ARG cpucores=1
+
+ENV workdir /sources/opencv
+
+WORKDIR ${workdir}
+
+RUN mkdir -p build && \
+    cd build && \
+    cmake \
+        -D CMAKE_BUILD_TYPE=RELEASE \
+        -D CMAKE_INSTALL_PREFIX=/usr/local \
+        -D INSTALL_C_EXAMPLES=OFF \
+        -D INSTALL_PYTHON_EXAMPLES=OFF \
+        -D OPENCV_GENERATE_PKGCONFIG=ON \
+        -D BUILD_EXAMPLES=OFF \
+        .. && \
+    make -j ${cpucores} && \
+    make install

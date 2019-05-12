@@ -1,0 +1,9 @@
+FROM opencv4-requirements
+
+ENV workdir /sources
+
+WORKDIR ${workdir}
+
+RUN git clone https://github.com/opencv/opencv.git && \
+    cd opencv && \
+    git checkout tags/4.1.0 \
